@@ -3,7 +3,9 @@ A simple shellscript to easily substitue config files based on env variables
 
 This little project should make the configuration part of small docker projects easier. 
 
-__NOTE__: For now you must have the bash shell installed. Especially alpine is using `sh` by default (`apk add --no-update --no-cache bash`).
+__NOTE__: 
+* For now you must have the bash shell installed. Especially alpine is using `sh` by default (`apk add --no-update --no-cache bash`).
+* `key=value` pairs without spaces are not supported at the moment (`key = value` is supported)
 
 # Logics
 
