@@ -11,7 +11,9 @@ configomat_do_work() {
 	[ -z ${_env_variable_prefix} ] && \
   echo "I could not find the env prefix. Exiting ..." && return 1
 
-	IFS=" " read -r -a _config_files <<< $2
+	# Not working with sh
+	# IFS=" " read -r -a _config_files <<< $2
+
 	# dispatch env variables
 	for env_variable in $(printenv | grep $_env_variable_prefix);do
 		# get key
@@ -27,7 +29,9 @@ configomat_do_work() {
 		value=$(echo $env_variable | cut -d "=" -f2-)
 		config_overrides[$key]=$value
 	done
-	for f in "${_config_files[@]}"
+	# Not working with sh
+	# for f in "${_config_files[@]}"
+	for f in $2
 	do
 		if [ ! -f "${f}" ];then
 			echo "Can not find ${f}. Skipping override"

@@ -1,4 +1,4 @@
-all: tests clean
+all: prepare tests clean
 
 prepare:
 	cp "test/example.conf" "/tmp/example.conf"
