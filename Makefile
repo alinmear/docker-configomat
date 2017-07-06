@@ -1,3 +1,5 @@
+.PHONY: clean prepare tests
+
 all: prepare tests clean
 
 prepare:
