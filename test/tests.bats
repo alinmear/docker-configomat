@@ -9,6 +9,14 @@ load 'test_helper/bats-assert/all'
   assert_success
 }
 
+@test "Substitue key value pair with spaces: key = (&(objectClass=PostfixBookMailAccount)(|(uniqueIdentifier=%n)(mail=%u)))" {
+  export "TEST_key_1=(&(objectClass=PostfixBookMailAccount)(|(uniqueIdentifier=%n)(mail=%u)))"
+  ./configomat.sh TEST_ /tmp/example.conf
+  assert_success
+  grep "key_1 = (\&(objectClass=PostfixBookMailAccount)(\|(uniqueIdentifier=\%n)(mail=\%u)))" /tmp/example.conf 2>&1 > /dev/null
+  assert_success
+}
+
 @test "Substitue key value pair with spaces: key = *+=/_-%&" {
   export TEST_key_2="*+=/_-%&"
   ./configomat.sh TEST_ /tmp/example.conf

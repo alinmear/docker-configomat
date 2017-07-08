@@ -28,7 +28,7 @@ configomat_do_work() {
 		value=$(echo $env_variable | cut -d "=" -f2-)
 		config_overrides[$key]=$value
 	done
-	
+
 	for f in "${_config_files[@]}"
 	do
 		if [ ! -f "${f}" ];then
@@ -40,7 +40,10 @@ configomat_do_work() {
 
         echo "  >> $f: $key = ${config_overrides[$key]}"
 
-				sed -i -e "s|^${key}[[:space:]]\+.*|${key} = ${config_overrides[$key]//&/\\&}|g" \
+				# Escape special characters
+				config_overrides[$key]=$((echo ${config_overrides[$key]}|sed -r 's/([\&\|\$\.\*\/\[\\^])/\\\1/g'|sed 's/[]]/\[]]/g')>&1)
+
+				sed -i -e "s|^${key}[[:space:]]\+.*|${key} = ${config_overrides[$key]}|g" \
 				${f}
 
 			done
