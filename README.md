@@ -1,4 +1,8 @@
 # docker-configomat
+
+![Build Status](https://img.shields.io/travis/alinmear/docker-configomat.svg?style=flat?branch=master)
+
+
 A simple shellscript to easily substitue config files based on env variables
 
 This little project should make the configuration part of small docker projects easier. 
