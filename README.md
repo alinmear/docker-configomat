@@ -1,5 +1,7 @@
 # docker-configomat
 
+[![Join the chat at https://gitter.im/alinmear/docker-configomat](https://badges.gitter.im/alinmear/docker-configomat.svg)](https://gitter.im/alinmear/docker-configomat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://img.shields.io/travis/alinmear/docker-configomat.svg?style=flat?branch=master)](https://travis-ci.org/alinmear/docker-configomat)
 [![Github Stars](https://img.shields.io/github/stars/alinmear/docker-configomat.svg?style=flat)](https://github.com/alinmear/docker-configomat) [![Gitter](https://img.shields.io/gitter/room/alinmear/docker-configomat.svg?style=flat)](https://gitter.im/alinmear/docker-configomat)
 
