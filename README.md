@@ -1,7 +1,9 @@
 # docker-configomat
 
 [![Build Status](https://img.shields.io/travis/alinmear/docker-configomat.svg?style=flat?branch=master)](https://travis-ci.org/alinmear/docker-configomat)
-[![Github Stars](https://img.shields.io/github/stars/alinmear/docker-configomat.svg?style=flat)](https://github.com/alinmear/docker-configomat) [![Gitter](https://img.shields.io/gitter/room/alinmear/docker-configomat.svg?style=flat)](https://gitter.im/alinmear/docker-configomat)
+[![Github Stars](https://img.shields.io/github/stars/alinmear/docker-configomat.svg?style=flat)](https://github.com/alinmear/docker-configomat) 
+[![Github Forks](https://img.shields.io/github/forks/alinmear/docker-configomat.svg?style=flat?label=github%20forks)](https://github.com/alinmear/docker-configomat/)
+[![Gitter](https://img.shields.io/gitter/room/alinmear/docker-configomat.svg?style=flat)](https://gitter.im/alinmear/docker-configomat)
 
 A simple shellscript to easily substitue config files based on env variables
 
