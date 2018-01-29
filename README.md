@@ -34,7 +34,7 @@ ssl_verify_client = no
 ```bash
 export LDAP_SSL_PRIVATE_KEY_FILE=/tmp/test.pem
 export LDAP_SSL_VERIFY_CLIENT=yes
-configomat.sh LDAP_ /etc/kopano/ica.cfg
+configomat.sh LDAP_ /etc/kopano/ical.cfg
 ```
 
 # Usage
@@ -42,7 +42,7 @@ configomat.sh LDAP_ /etc/kopano/ica.cfg
 ```bash
 configomat.sh <PREFIX> <FILE>
 # or
-confiromat.sh <PREFIX> "<FILE1> <FILE2> <FILE3>"
+configomat.sh <PREFIX> "<FILE1> <FILE2> <FILE3>"
 ```
 
 # Use within your docker project
@@ -50,13 +50,13 @@ confiromat.sh <PREFIX> "<FILE1> <FILE2> <FILE3>"
 * Add subproject
 ```bash
 cd <your-project>
-git add submodule https://github.com/alinmear/docker-configomat.git
+git submodule add https://github.com/alinmear/docker-configomat.git
 git commit
 ```
 
 * Extend your Dockerfile with theses lines
 ```bash
-COPY docker-configomant/configomat.sh /usr/local/bin
+COPY docker-configomat/configomat.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/*
 ```
 
