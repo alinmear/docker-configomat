@@ -9,25 +9,34 @@ configomat_do_work() {
 
 	_env_variable_prefix=$1
 	[ -z ${_env_variable_prefix} ] && \
-  echo "I could not find the env prefix. Exiting ..." && return 1
+    echo "I could not find the env prefix. Exiting ..." && \
+	return 1
 
 	IFS=" " read -r -a _config_files <<< $2
 
+	_tmpf=$(mktemp /tmp/configomat.XXXXXX) || exit 1
+
+	printenv | grep $_env_variable_prefix > $_tmpf
+
 	# dispatch env variables
-	for env_variable in $(printenv | grep $_env_variable_prefix);do
+	# for env_variable in $(printenv | grep $_env_variable_prefix);do
+	while read env_variable
+	do
 		# get key
 		# IFS not working because values like ldap_query_filter or search base consists of several '='
 		# IFS="=" read -r -a __values <<< $env_variable
 		# key="${__values[0]}"
 		# value="${__values[1]}"
-		key=$(echo $env_variable | cut -d "=" -f1)
+		key="$(echo $env_variable | cut -d '=' -f1)"
 		key=${key#"${_env_variable_prefix}"}
 		# make key lowercase
 		key=${key,,}
 		# get value
-		value=$(echo $env_variable | cut -d "=" -f2-)
-		config_overrides[$key]=$value
-	done
+		value="$(echo $env_variable | cut -d '=' -f2-)"
+		config_overrides[$key]="$value"
+	done <$_tmpf
+
+	rm -f $_tmpf
 
 	for f in "${_config_files[@]}"
 	do
@@ -38,10 +47,10 @@ configomat_do_work() {
 			do
 				[ -z $key ] && echo -e "\t no key provided" && return 1
 
-        echo "  >> $f: $key = ${config_overrides[$key]}"
+				echo "  >> $f: $key = ${config_overrides[$key]}"
 
 				# Escape special characters
-				config_overrides[$key]=$((echo ${config_overrides[$key]}|sed -r 's/([\&\|\$\.\*\/\[\\^])/\\\1/g'|sed 's/[]]/\[]]/g')>&1)
+				config_overrides[$key]="$((echo ${config_overrides[$key]}|sed -r 's/([\=\&\|\$\.\*\/\[\\^])/\\\1/g'|sed 's/[]]/\[]]/g')>&1)"
 
 				sed -i -e "s|^${key}[[:space:]]\+.*|${key} = ${config_overrides[$key]}|g" \
 				${f}
