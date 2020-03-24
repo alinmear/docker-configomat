@@ -64,7 +64,7 @@ configomat_do_work() {
 echo -e "\nConfig'O'mat. Version $_version"
 
 # Initial Checks
-[[ "$#" -ne 2 ]] && echo "I need to arguments: Env prefix (e.g. CONFIGOMAT_) and " \
+[[ "$#" -ne 2 ]] && echo "I need two arguments: Env prefix (e.g. CONFIGOMAT_) and " \
                          "the file to parse. Exiting ..." && exit 1
 
 [[ ! -f "$2" ]] && echo "The file could not be found: $2. Exiting ..." && exit 1
