@@ -50,7 +50,7 @@ configomat_do_work() {
 				echo "  >> $f: $key = ${config_overrides[$key]}"
 
 				# Escape special characters
-				config_overrides[$key]="$((echo ${config_overrides[$key]}|sed -r 's/([\=\&\|\$\.\*\/\[\\^])/\\\1/g'|sed 's/[]]/\[]]/g')>&1)"
+				config_overrides[$key]="$((echo ${config_overrides[$key]}|sed -r 's/([\=\&\|\$\.\*\/\[\\^])/\\\1/g'|sed 's/[]]/\\]/g')>&1)"
 
 				sed -i -e "s|^${key}[[:space:]]\+.*|${key} = ${config_overrides[$key]}|g" \
 				${f}
